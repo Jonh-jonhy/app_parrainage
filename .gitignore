@@ -1,1 +1,4 @@
 venv/
+parrainage_app/parrainage_app/media/
+parrainage_app/media/
+parrainage_app/media/*
