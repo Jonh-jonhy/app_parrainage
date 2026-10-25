@@ -1,0 +1,21 @@
+{% extends "parrainage/base.html" %}
+{% block titre_page %}Accueil . Parrainage{%endblock%}
+
+{% block contenu %}
+    <h1 class="titre">Bienvenue au <span>parrainage</span></h1>
+    <p class="sous-titre">Prépare tes participants, puis laisse le destin faire le reste.</p>
+
+    <div class="menu">
+        <a href="{% url 'admin:index' %}" class="choix choix-admin">
+            <span class="choix-icone">🛠️</span>
+            <span class="choix-titre">Administration</span>
+            <span class="choix-texte">Enregistre tes parrains et tes filleuls</span>
+        </a>
+
+        <a href="{% url 'parrainage:parrainages' %}" class="choix choix-jouer">
+            <span class="choix-icone">🎰</span>
+            <span class="choix-titre">Lancer le parrainage</span>
+            <span class="choix-texte">Que le tirage commence</span>
+        </a>
+    </div>
+{%endblock%}

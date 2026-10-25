@@ -30,14 +30,15 @@ def attribuer_parrain( filleul:Filleul ) -> Parrain:
             filleul.save()
             return filleul.parrain
             
-
+def acceuil_view(request):
+    return render(request, "parrainage/acceuil.html", context={})
 
 def parrainage_view(request):
         filleuls = Filleul.objects.filter(parrain=None)
         #si tout les filleuls ont des parraints
         if filleuls.count() == 0:
             message = "Tout les filleuls ont des parrains"
-            return render(request, "", context={"message": message})
+            return render(request, "parrainage/termine.html", context={"message": message})
         else:
             #recuperation du premier filleul n'ayant pas de parrain
             filleul = filleuls[0]

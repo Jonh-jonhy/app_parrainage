@@ -182,3 +182,85 @@ a {
     justify-content: center;
     align-items: center;
 }
+
+/* ---------- Les liens-boutons (<a>) ---------- */
+a.bouton {
+    text-align: center;
+    text-decoration: none;
+}
+
+/* ---------- Accueil : deux grands choix ---------- */
+.menu {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.choix {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 50px 24px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--texte);
+    background: var(--carte);
+    border: 2px solid var(--rarete);
+    border-radius: 18px;
+    box-shadow: 0 0 25px -5px var(--rarete);
+    transition: transform .3s, box-shadow .3s;
+}
+.choix:hover {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow: 0 0 45px 0 var(--rarete);
+}
+
+.choix-admin { --rarete: #38bdf8; }   /* bleu : outil */
+.choix-jouer { --rarete: #fbbf24; }   /* doré : le gacha */
+
+.choix-icone  { font-size: 4.5rem; transition: transform .3s; }
+.choix:hover .choix-icone { transform: scale(1.2) rotate(8deg); }
+.choix-titre  { font-size: 1.6rem; font-weight: bold; }
+.choix-texte  { color: var(--discret); }
+
+/* Le choix principal respire pour attirer l'œil */
+.choix-jouer { animation: pulse 2.5s ease-in-out infinite; }
+
+/* ---------- Page finale ---------- */
+.final {
+    max-width: 560px;
+    margin: 40px auto 0;
+    padding: 50px 30px;
+    text-align: center;
+    background: var(--carte);
+    border: 2px solid #fbbf24;
+    border-radius: 22px;
+    box-shadow: 0 0 60px -10px #fbbf24;
+    animation: reveler .9s cubic-bezier(.2, 1.4, .4, 1) both;
+}
+
+.trophee {
+    font-size: 6rem;
+    filter: drop-shadow(0 0 20px #fbbf24aa);
+    animation: flotter 3s ease-in-out infinite;
+}
+
+.final .sous-titre { margin-bottom: 10px; }
+
+.bouton-pdf { margin-top: 30px; }
+
+.lien-retour {
+    display: inline-block;
+    margin-top: 28px;
+    color: var(--discret);
+    text-decoration: none;
+    transition: color .2s;
+}
+.lien-retour:hover { color: var(--texte); }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 700px) {
+    .menu { flex-direction: column; }
+}

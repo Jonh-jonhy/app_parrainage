@@ -1,0 +1,16 @@
+{% extends "parrainage/base.html" %}
+{% block titre_page %}Resultat{%endblock%}
+
+{% block contenu %}
+    <section class="final">
+        <div class="trophee">🏆</div>
+        <h1 class="titre">Parrainage <span>terminé</span></h1>
+        <p class="sous-titre">Tous les filleuls ont trouvé leur parrain.</p>
+
+        <a href="" class="bouton bouton-pdf">
+            <span>📄 Générer le PDF</span>
+        </a>
+
+        <a href="{% url 'parrainage:acceuil' %}" class="lien-retour">← Retour à l'accueil</a>
+    </section>
+{% endblock %}
