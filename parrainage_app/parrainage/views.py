@@ -5,6 +5,11 @@ from django.db.models import Count
 from .models import Parrain, Filleul
 from .exceptions import ParrainageError, ParrainExistantError
 
+# Generation pdf
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
 
 
 def attribuer_parrain( filleul:Filleul ) -> Parrain:
@@ -32,6 +37,41 @@ def attribuer_parrain( filleul:Filleul ) -> Parrain:
             
 def acceuil_view(request):
     return render(request, "parrainage/acceuil.html", context={})
+
+def pdf(request):
+    response = HttpResponse(content_type="application/pdf")
+    response["content-Disposition"] = 'inline; filename="parrainage.pdf"'
+
+    filleuls = Filleul.objects.select_related("parrain").order_by("nom")
+
+    donnees = [["Filleul", "Parrain"]]
+    for f in filleuls:
+        parrain = f"{f.parrain.nom} {f.parrain.prenom}" if f.parrain else "-"
+        donnees.append([f"{f.nom} {f.prenom}", parrain])
+
+    tableau = Table(donnees, colWidths=[250, 250], repeatRows=1)
+    tableau.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#2b2e55")),
+        ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+        ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+        ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#f1f1f8")]),
+        ("GRID", (0, 0), (-1, -1), 0.5, colors.grey),
+        ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("TOPPADDING", (0, 0), (-1, -1), 8),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
+    ]))
+
+    #construction du document
+    styles = getSampleStyleSheet()
+    doc = SimpleDocTemplate(response, pagesize=A4)
+    doc.build([
+        Paragraph("Liste du parrainage", styles["Title"]),
+        Spacer(1, 20),
+        tableau,
+    ])
+
+    return response
 
 def parrainage_view(request):
         filleuls = Filleul.objects.filter(parrain=None)
