@@ -44,8 +44,8 @@
 
                 <!-- Parrain -->
                 {% if parrain %}
-                <div class="carte revelee" data-niveau="{{ parrain.niveau|default:1 }}">
-                    <span class="badge">Niv. {{ parrain.niveau }}</span>
+                <div class="carte revelee" data-niveau="{{ parrain.niveau|default:2 }}">
+                    <span class="badge">Niv. 2</span>
                     <div class="photo">
                         {% if parrain.photo %}
                             <img src="{{ parrain.photo.url }}" alt="Photo de {{ parrain.prenom }}">

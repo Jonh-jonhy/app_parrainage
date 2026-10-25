@@ -2,3 +2,12 @@ venv/
 parrainage_app/parrainage_app/media/
 parrainage_app/media/
 parrainage_app/media/*
+parrainage_app/parrainage_app/__pycache__/
+parrainage_app/parrainage_app/__pycache__/*
+parrainage_app/parrainage/__pycache__/
+parrainage_app/parrainage/__pycache__/*
+
+__pycache__/
+*.pyc
+db.sqlite3
+media/
