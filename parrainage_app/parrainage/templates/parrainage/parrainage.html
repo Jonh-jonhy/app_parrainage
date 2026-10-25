@@ -66,10 +66,18 @@
                 {% endif %}
 
             </div>
-
-            <button type="submit" class="bouton" id="bouton">
-                <span>Parrainer</span>
-            </button>
+            {% if parrain %}
+            <a href={% url 'parrainage:parrainages' %} >
+                <div class="bouton centered" >
+                    <span>Suivant</span>
+                </div>
+            </a>
+            {% else %}
+                <button type="submit" class="bouton" id="bouton">
+                    <span>Parrainer</span>
+                </button>
+            {% endif %}
+            
         </form>
     </main>
 

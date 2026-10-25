@@ -171,3 +171,14 @@ body {
     .carte { max-width: 260px; width: 100%; }
     .centre { transform: rotate(90deg); }
 }
+
+/* Personnel */
+a {
+    text-decoration: none;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
