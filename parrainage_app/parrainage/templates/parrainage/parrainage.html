@@ -12,10 +12,16 @@
         <h1 class="titre">Trouve ton <span>parrain</span></h1>
         <p class="sous-titre">Le destin choisit. Tu n'as qu'à appuyer.</p>
 
-        <form method="post" id="form-tirage">
+        <form method="post" id="form-tirage" action={% url 'parrainage:parrainer' filleul.id %}>
             {% csrf_token %}
 
+            {% if error_message %}
+                <h1>{{error_message}}</h1>
+            {% endif %}
             <div class="duel">
+                {% if filleul %} 
+                    <input type="radio" name="filleul" value={{filleul.id}} checked hidden>
+                {% endif %}
 
                 <!-- Filleul -->
                 <div class="carte" data-niveau="{{ filleul.niveau|default:1 }}">
@@ -38,7 +44,7 @@
 
                 <!-- Parrain -->
                 {% if parrain %}
-                <div class="carte revelee" data-niveau="{{ parrain.niveau|default:2 }}">
+                <div class="carte revelee" data-niveau="{{ parrain.niveau|default:1 }}">
                     <span class="badge">Niv. {{ parrain.niveau }}</span>
                     <div class="photo">
                         {% if parrain.photo %}
